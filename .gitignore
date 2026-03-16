@@ -1,0 +1,6 @@
+# Large model/similarity files
+*.pkl
+.venv/
+.idea/
+__pycache__/
+*.pyc
