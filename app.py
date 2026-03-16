@@ -422,7 +422,8 @@ def fetch_poster(movie_id):
     max_retries = 5
     for attempt in range(max_retries):
         try:
-            url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=4d4c2bfb1b500a5ed7cbe3893f65158e"
+            api_key = os.environ.get("TMDB_API_KEY", "4d4c2bfb1b500a5ed7cbe3893f65158e")
+            url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}"
             response = http_session.get(url, timeout=10)
             
             # Raise exception for bad status codes (like 429 Too Many Requests)
