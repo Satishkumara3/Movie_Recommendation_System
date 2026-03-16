@@ -493,9 +493,22 @@ def recommend(movie):
     return recommended_movie_names, recommended_movie_posters, recommended_ratings, recommended_years, recommended_overviews, movie_ids
 
 
+import os
+import gdown
+
 # ──────────────────────────────────────────────
 # Load Data
 # ──────────────────────────────────────────────
+def download_similarity_file():
+    file_id = '13uR8yGrUmc1wBY4M1uo768xhvvHDesER'
+    output = 'similarity.pkl'
+    if not os.path.exists(output):
+        with st.spinner("🚀 Downloading model data (184MB)... Please wait."):
+            url = f'https://drive.google.com/uc?id={file_id}'
+            gdown.download(url, output, quiet=False)
+
+download_similarity_file()
+
 movies = pickle.load(open('movie_list.pkl', 'rb'))
 similarity = pickle.load(open('similarity.pkl', 'rb'))
 movies['movie_id'] = movies['movie_id'].astype(int)
@@ -510,7 +523,7 @@ movie_list = movies['title'].values
 st.markdown("""
 <div class="hero-header">
     <h1>🎬 CineMatch</h1>
-    <p>AI-Powered Movie Recommendations</p>
+    <p>Powered Movie Recommendations</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -567,6 +580,6 @@ if show_btn:
 # Footer
 st.markdown("""
 <div class="app-footer">
-    CINEMATCH © 2026 — POWERED BY TMDB & AI ✨
+    CINEMATCH © 2026 — POWERED BY TMDB ✨
 </div>
 """, unsafe_allow_html=True)
