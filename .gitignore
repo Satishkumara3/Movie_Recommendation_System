@@ -1,5 +1,5 @@
 # Large model/similarity files
-*.pkl
+similarity.pkl
 .venv/
 .idea/
 __pycache__/
